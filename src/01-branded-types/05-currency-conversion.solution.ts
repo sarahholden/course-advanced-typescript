@@ -15,7 +15,7 @@ type AuthorizedUser = Brand<User, "CurrencyAuthorizedUser">;
 const getConversionRateFromApi = async (
   amount: number,
   from: string,
-  to: string,
+  to: string
 ) => {
   return Promise.resolve((amount * 0.82) as ConvertedAmount);
 };
@@ -24,12 +24,12 @@ const getConversionRateFromApi = async (
 const performConversion = async (
   user: AuthorizedUser,
   to: string,
-  amount: ConvertedAmount,
+  amount: ConvertedAmount
 ) => {};
 
 const ensureUserCanConvert = (
   user: User,
-  amount: ConvertedAmount,
+  amount: ConvertedAmount
 ): AuthorizedUser => {
   if (user.maxConversionAmount < amount) {
     throw new Error("User cannot convert currency");
@@ -44,7 +44,7 @@ describe("Possible implementations", () => {
       user: User,
       from: string,
       to: string,
-      amount: number,
+      amount: number
     ) => {
       const convertedAmount = await getConversionRateFromApi(amount, from, to);
 
@@ -58,7 +58,7 @@ describe("Possible implementations", () => {
       user: User,
       from: string,
       to: string,
-      amount: number,
+      amount: number
     ) => {
       // @ts-expect-error
       const authorizedUser = ensureUserCanConvert(user, amount);
@@ -73,7 +73,7 @@ describe("Possible implementations", () => {
       user: User,
       from: string,
       to: string,
-      amount: number,
+      amount: number
     ) => {
       const convertedAmount = await getConversionRateFromApi(amount, from, to);
       const authorizedUser = ensureUserCanConvert(user, convertedAmount);
