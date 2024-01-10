@@ -1,7 +1,7 @@
 import { describe, it } from "vitest";
 import { Brand } from "../helpers/Brand";
 
-type ValidUser = Brand<User, "ValidUser">;
+type AuthorizedUser = Brand<User, "AuthorizedUser">;
 type ConvertedAmount = Brand<number, "ConvertedAmount">;
 
 interface User {
@@ -22,7 +22,7 @@ const getConversionRateFromApi = async (
 
 // Mocks a function which actually performs the conversion
 const performConversion = async (
-  user: ValidUser,
+  user: AuthorizedUser,
   to: string,
   amount: ConvertedAmount
 ) => {};
@@ -30,12 +30,12 @@ const performConversion = async (
 const ensureUserCanConvert = (
   user: User,
   amount: ConvertedAmount
-): ValidUser => {
+): AuthorizedUser => {
   if (user.maxConversionAmount < amount) {
     throw new Error("User cannot convert currency");
   }
 
-  return user as ValidUser;
+  return user as AuthorizedUser;
 };
 
 describe("Possible implementations", () => {
