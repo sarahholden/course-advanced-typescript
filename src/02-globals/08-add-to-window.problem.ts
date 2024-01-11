@@ -21,6 +21,8 @@ declare global {
 “declaration merging” means that the compiler merges two separate declarations 
 declared with the same name into a single definition. This merged definition has 
 the features of both of the original declarations.
+
+DOES NOT HAPPEN WITH TYPES, only with INTERFACES
 */
 
 window.makeGreeting = () => "Hello, world!";
