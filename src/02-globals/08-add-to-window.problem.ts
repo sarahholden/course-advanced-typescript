@@ -10,6 +10,19 @@ import { Equal, Expect } from "../helpers/type-utils";
  * interface to add a makeGreeting function
  */
 
+declare global {
+  interface Window {
+    makeGreeting(): string;
+  }
+}
+
+// DECLARATION MERGING:
+/*
+“declaration merging” means that the compiler merges two separate declarations 
+declared with the same name into a single definition. This merged definition has 
+the features of both of the original declarations.
+*/
+
 window.makeGreeting = () => "Hello, world!";
 
 it("Should let you call makeGreeting from the window object", () => {
