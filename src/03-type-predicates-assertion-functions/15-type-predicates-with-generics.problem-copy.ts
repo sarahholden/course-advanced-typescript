@@ -7,12 +7,12 @@ import { Equal, Expect } from "../helpers/type-utils";
  * you can fix all the errors below.
  */
 interface DOMNodeExtractorConfig<T, Result> {
-  isNode: (node: unknown) => node is T;
+  isNode: (node: unknown) => boolean;
   transform: (node: T) => Result;
 }
 
 const createDOMNodeExtractor = <T, TResult>(
-  config: DOMNodeExtractorConfig<T, TResult>
+  config: DOMNodeExtractorConfig<T, TResult>,
 ) => {
   return (nodes: unknown[]): TResult[] => {
     return nodes.filter(config.isNode).map(config.transform);
