@@ -3,9 +3,9 @@ import { Equal, Expect } from "../helpers/type-utils";
 
 export const values = ["a", "b", undefined, "c", undefined];
 
-// This solution is a little ugly! The much better one
-// is solution number 2!
-const filteredValues = values.filter((value) => Boolean(value)) as string[];
+const filteredValues = values.filter((value): value is string =>
+  Boolean(value)
+);
 
 it("Should filter out the undefined values", () => {
   expect(filteredValues).toEqual(["a", "b", "c"]);
